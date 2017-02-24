@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    table.table.table-striped.table-bordered
+        tr
+            th.text-center.col-sm-10= "Collection"
+            th.text-center.col-sm-2= "View"
+        each collection in collections
+            tr
+                td= collection.name
+                td.text-center
+                    a.btn.btn-success.col-sm-12(role="button" href="#")= ">"

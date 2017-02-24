@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    table.table.table-striped.table-bordered
+        tr
+            th.text-center.col-sm-10= "Database"
+            th.text-center.col-sm-2= "View"
+        each database in databases
+            tr
+                td= database.name
+                td.text-center
+                    a.btn.btn-success.col-sm-12(role="button" href="/collections?database=" + database.name)= ">"
