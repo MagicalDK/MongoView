@@ -14,5 +14,18 @@ module.exports = (state) => {
         });
     });
 
+    router.post("/", (request, response) => {
+        console.log("/databases - POST");
+        const databaseName = request.body.databaseName;
+        const collectionName = request.body.collectionName;
+
+        if ( !databaseName || !collectionName ) return response.redirect(301, "/databases");
+
+        const database = state.database.db(databaseName);
+        database.createCollection(collectionName, function(error, collection){
+            return response.redirect(301, "/databases");
+        });
+    });
+
     return router;
 }

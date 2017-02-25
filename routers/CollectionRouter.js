@@ -17,5 +17,20 @@ module.exports = (state) => {
         });
     });
 
+    router.post("/", (request, response) => {
+        console.log("/collections - POST");
+        const databaseName = request.query.database;
+        const collectionName = request.body.collectionName;
+
+        if ( !databaseName || !collectionName ) return response.redirect(301, "/collections");
+
+        const database = state.database.db(databaseName);
+        database.createCollection(collectionName, function(error, collection){
+            if ( error ) return console.log("Error creating collection - " + error.message);
+
+            return response.redirect(301, "/collections?database=" + databaseName);
+        });
+    });
+
     return router;
 }

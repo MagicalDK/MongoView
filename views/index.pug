@@ -1,6 +1,12 @@
 extends layout
 
 block content
+    form.form-inline.mb-4(action="/databases" method="POST")
+        div.center
+            input.form-control.ml-2.mr-2(type="text" name="databaseName" placeholder="Database name...")
+            input.form-control.ml-2.mr-2(type="text" name="collectionName" placeholder="Collection name...")
+            button.btn.btn-primary(type="submit")= "Create"
+
     table.table.table-striped.table-bordered
         tr
             th.text-center.col-sm-10= "Database"
