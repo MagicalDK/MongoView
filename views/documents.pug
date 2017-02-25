@@ -1,0 +1,31 @@
+extends layout
+
+mixin parseObject(object)
+    table.table.table-striped.table-bordered.m-4.line-break-table
+        tr
+            th.text-center= "Key"
+            th.text-centet= "Value"
+        each value, key in object
+            if typeof value !== "object"
+                tr
+                    td.line-break-table-cell= key
+                    td.line-break-table-cell= value
+            else if typeof value === "object"
+                tr
+                    +parseObject(value)
+
+
+block content
+    each document, index in documents
+        h5= "Document " + index + " - ID: " + document._id
+
+        table.table.table-striped.table-bordered.m-4
+            tr
+                th.text-center.col-sm-10= "Document"
+                th.text-centet.col-sm-2= "View"
+            tr
+                td
+                    pre
+                        code.language-json.wrap= JSON.stringify(document, null, 4)
+                td.align-middle
+                    a.btn.btn-success.col-sm-12(role="button" href="#")= ">"

@@ -3,9 +3,14 @@ html
   head
     title= title
     link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css")
+    link(rel="stylesheet", href="/styles/prism.css")
     link(rel="stylesheet", href="/styles/style.css")
   body.bg-faded
-    div
-        h1.display-4.text-center.p-4= title
+    div.col-sm-8.center
+        a.col-sm-2.btn.btn-primary.m-1(role="button" href="/databases")="< Home"
+        h1.col-sm-12.display-4.text-center.p-4= title
+
     div.col-sm-8.center
         block content
+
+    script(src="/scripts/prism.js")

@@ -1,5 +1,4 @@
 const express = require("express");
-const MongoClient = require("mongodb").MongoClient;
 
 module.exports = (state) => {
     const router = express.Router();
@@ -14,7 +13,7 @@ module.exports = (state) => {
 
             console.log(JSON.stringify(collections));
             const title = databaseName + " - Collections";
-            return response.render("collections", { title: title, collections: collections });
+            return response.render("collections", { title: title, database: databaseName, collections: collections });
         });
     });
 

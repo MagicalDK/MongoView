@@ -4,6 +4,7 @@ var path = require('path');
 
 const DatabaseRouter = require("./routers/DatabaseRouter");
 const CollectionRouter = require("./routers/CollectionRouter");
+const DocumentRouter = require("./routers/DocumentRouter");
 
 module.exports = (state) => {
 	const app = express();
@@ -17,6 +18,7 @@ module.exports = (state) => {
 
     app.use("/databases", DatabaseRouter(state));
     app.use("/collections", CollectionRouter(state));
+    app.use("/documents", DocumentRouter(state));
 
 	return app;
 };

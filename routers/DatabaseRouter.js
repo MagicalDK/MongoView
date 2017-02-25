@@ -10,7 +10,6 @@ module.exports = (state) => {
             if ( error ) return console.log("Error listing databases");
 
             console.log("Number of databases: " + databases.databases.length);
-            //return response.status(200).end(JSON.stringify(databases.databases));
             return response.render("index", { title: "Databases", databases: databases.databases });
         });
     });
