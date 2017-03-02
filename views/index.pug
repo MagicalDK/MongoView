@@ -9,10 +9,23 @@ block content
 
     table.table.table-striped.table-bordered
         tr
-            th.text-center.col-sm-10= "Database"
+            th.text-center.col-sm-8= "Database"
+            th.text-center.col-sm-2= "Remove"
             th.text-center.col-sm-2= "View"
         each database in databases
             tr
                 td= database.name
                 td.text-center
+                    button.btn.btn-danger.col-sm-12.mt-2(role="button" onClick="removeDatabase(\"" + database.name + "\")")= "Remove"
+                td.text-center
                     a.btn.btn-success.col-sm-12(role="button" href="/collections?database=" + database.name)= ">"
+
+    script.
+        function removeDatabase(databaseName) {
+            console.log("remove database - " + databaseName);
+            superagent
+                .delete("/databases?database=" + databaseName)
+                .end((error, result) => {
+                    window.location.replace("/databases");
+                });
+        }

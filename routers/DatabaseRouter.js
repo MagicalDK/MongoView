@@ -27,5 +27,15 @@ module.exports = (state) => {
         });
     });
 
+    router.delete("/", (request, response) => {
+        const databaseName = request.query.database;
+        console.log("/databases - DELETE - " + databaseName);
+
+        const database = state.database.db(databaseName);
+        database.dropDatabase(databaseName, function(error, result){
+            return response.status(200).end();
+        });
+    });
+
     return router;
 }
