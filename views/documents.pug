@@ -1,21 +1,8 @@
 extends layout
 
-mixin parseObject(object)
-    table.table.table-striped.table-bordered.m-4.line-break-table
-        tr
-            th.text-center= "Key"
-            th.text-centet= "Value"
-        each value, key in object
-            if typeof value !== "object"
-                tr
-                    td.line-break-table-cell= key
-                    td.line-break-table-cell= value
-            else if typeof value === "object"
-                tr
-                    +parseObject(value)
-
-
 block content
+    a.btn.btn-success.col-sm-12.mt-3.mb-3(role="button" href="/documents/new?database=" + database + "&collection=" + collection)= "New document >"
+
     each document, index in documents
         h5= "Document " + index + " - ID: " + document._id
 

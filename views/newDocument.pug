@@ -1,0 +1,31 @@
+extends layout
+
+block content
+    script(src="/scripts/ace/ace.js")
+
+    div#editor.
+        {
+
+        }
+
+    button.btn.btn-success.col-sm-12.mt-2(role="button" onClick="saveDocument()")= "Save"
+
+    script.
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/chrome");
+        editor.getSession().setMode("ace/mode/json");
+
+        function saveDocument() {
+            var document = editor.getSession().getValue();
+            var result = window.confirm("Are you sure?");
+            if( result ) {
+                var database = "#{database}";
+                var collection = "#{collection}";
+                superagent
+                    .post("/documents?database=" + database + "&collection=" + collection)
+                    .send(JSON.parse(editor.getSession().getValue()))
+                    .end((error, result) => {
+                        window.location.replace("/documents?database=" + database + "&collection=" + collection);
+                    });
+            }
+        }
